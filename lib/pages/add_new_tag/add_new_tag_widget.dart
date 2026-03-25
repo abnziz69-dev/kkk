@@ -101,7 +101,7 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
               buttonSize: 44.0,
               icon: Icon(
                 Icons.arrow_back_rounded,
-                color: FlutterFlowTheme.of(context).alternate,
+                color: Colors.white,
                 size: 24.0,
               ),
               onPressed: () async {
@@ -117,7 +117,7 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                     fontStyle:
                         FlutterFlowTheme.of(context).titleLarge.fontStyle,
                   ),
-                  color: FlutterFlowTheme.of(context).alternate,
+                  color: Colors.white,
                   fontSize: 20.0,
                   letterSpacing: 0.0,
                   fontWeight: FontWeight.bold,
