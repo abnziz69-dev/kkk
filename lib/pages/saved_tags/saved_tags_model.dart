@@ -4,6 +4,10 @@ import 'saved_tags_widget.dart' show SavedTagsWidget;
 import 'package:flutter/material.dart';
 
 class SavedTagsModel extends FlutterFlowModel<SavedTagsWidget> {
+  ///  Local state fields for this page.
+
+  String searchText = ' ';
+
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for TextField widget.

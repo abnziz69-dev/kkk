@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+
 import '/flutter_flow/flutter_flow_util.dart';
 
 import '/index.dart';
@@ -53,7 +54,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: AddNewTagWidget.routeName,
           path: AddNewTagWidget.routePath,
-          builder: (context, params) => AddNewTagWidget(),
+          builder: (context, params) => AddNewTagWidget(
+            isEdit: params.getParam(
+              'isEdit',
+              ParamType.bool,
+            ),
+            editNameDesc: params.getParam(
+              'editNameDesc',
+              ParamType.String,
+            ),
+            editSerialNumber: params.getParam(
+              'editSerialNumber',
+              ParamType.String,
+            ),
+            editTagId: params.getParam(
+              'editTagId',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

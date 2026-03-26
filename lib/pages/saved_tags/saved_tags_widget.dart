@@ -1,3 +1,4 @@
+import '/backend/sqlite/sqlite_manager.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -177,7 +178,11 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                       onChanged: (_) => EasyDebounce.debounce(
                                         '_model.textController',
                                         Duration(milliseconds: 2000),
-                                        () => safeSetState(() {}),
+                                        () async {
+                                          _model.searchText =
+                                              'SearchTextField text';
+                                          safeSetState(() {});
+                                        },
                                       ),
                                       autofocus: false,
                                       obscureText: false,
@@ -380,847 +385,130 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                child: ListView(
-                  padding: EdgeInsets.fromLTRB(
-                    0,
-                    12.0,
-                    0,
-                    12.0,
+                child: FutureBuilder<List<SearchTagsRow>>(
+                  future: SQLiteManager.instance.searchTags(
+                    searchText: '',
                   ),
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 8.0,
-                            color: Color(0x1A000000),
-                            offset: Offset(
-                              0.0,
-                              2.0,
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 50.0,
+                          height: 50.0,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              FlutterFlowTheme.of(context).primary,
                             ),
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(16.0),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 4.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Icon(
-                                              Icons.nfc_rounded,
-                                              color: Color(0xFFFF6B00),
-                                              size: 18.0,
-                                            ),
-                                            Text(
-                                              'Warehouse Pallet A-12',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .titleSmall
-                                                  .override(
-                                                    font:
-                                                        GoogleFonts.interTight(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF1A1A1A),
-                                                    fontSize: 15.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmall
-                                                            .fontStyle,
-                                                  ),
-                                            ),
-                                          ].divide(SizedBox(width: 8.0)),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 3.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Text(
-                                              'Ref:',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelSmall
-                                                      .override(
-                                                        font: GoogleFonts.inter(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontStyle,
-                                                        ),
-                                                        color:
-                                                            Color(0xFF9E9E9E),
-                                                        fontSize: 12.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelSmall
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelSmall
-                                                                .fontStyle,
-                                                      ),
-                                            ),
-                                            Text(
-                                              'REF-2024-00142',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .labelSmall
-                                                  .override(
-                                                    font: GoogleFonts.inter(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelSmall
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF555555),
-                                                    fontSize: 12.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w600,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelSmall
-                                                            .fontStyle,
-                                                  ),
-                                            ),
-                                          ].divide(SizedBox(width: 6.0)),
-                                        ),
-                                      ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Text(
-                                            'Tag ID:',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelSmall
-                                                .override(
-                                                  font: GoogleFonts.inter(
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelSmall
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelSmall
-                                                            .fontStyle,
-                                                  ),
-                                                  color: Color(0xFF9E9E9E),
-                                                  fontSize: 12.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelSmall
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelSmall
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                          Text(
-                                            'E2:00:34:19:11:01:40:2B',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelSmall
-                                                .override(
-                                                  font: GoogleFonts.inter(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelSmall
-                                                            .fontStyle,
-                                                  ),
-                                                  color: Color(0xFF555555),
-                                                  fontSize: 12.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelSmall
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                        ].divide(SizedBox(width: 6.0)),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  height: 26.0,
-                                  decoration: BoxDecoration(
-                                    color: Color(0x1A2ECC71),
-                                    borderRadius: BorderRadius.circular(13.0),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        10.0, 0.0, 10.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Container(
-                                          width: 6.0,
-                                          height: 6.0,
-                                          decoration: BoxDecoration(
-                                            color: Color(0xFF2ECC71),
-                                            shape: BoxShape.circle,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  5.0, 0.0, 5.0, 0.0),
-                                          child: Text(
-                                            'Matched',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelSmall
-                                                .override(
-                                                  font: GoogleFonts.inter(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelSmall
-                                                            .fontStyle,
-                                                  ),
-                                                  color: Color(0xFF27AE60),
-                                                  fontSize: 11.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelSmall
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Divider(
-                              height: 16.0,
-                              thickness: 1.0,
-                              color: Color(0xFFF0F0F0),
-                            ),
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Icon(
-                                      Icons.access_time_rounded,
-                                      color: Color(0xFFAAAAAA),
-                                      size: 14.0,
-                                    ),
-                                    Text(
-                                      'Scanned 2h ago',
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelSmall
-                                          .override(
-                                            font: GoogleFonts.inter(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelSmall
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelSmall
-                                                      .fontStyle,
-                                            ),
-                                            color: Color(0xFFAAAAAA),
-                                            fontSize: 11.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelSmall
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelSmall
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                  ].divide(SizedBox(width: 4.0)),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Container(
-                                      width: 36.0,
-                                      height: 36.0,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFF0F8FF),
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                      child: Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: Icon(
-                                          Icons.visibility_rounded,
-                                          color: Colors.blue,
-                                          size: 18.0,
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 36.0,
-                                      height: 36.0,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFFFF3E0),
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                      child: Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: Icon(
-                                          Icons.edit_rounded,
-                                          color: Color(0xFFFF6B00),
-                                          size: 18.0,
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 36.0,
-                                      height: 36.0,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFFFEBEE),
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                      child: Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: Icon(
-                                          Icons.delete_outline_rounded,
-                                          color: Color(0xFFE53935),
-                                          size: 18.0,
-                                        ),
-                                      ),
-                                    ),
-                                  ].divide(SizedBox(width: 4.0)),
-                                ),
-                              ],
-                            ),
-                          ],
+                          ),
                         ),
+                      );
+                    }
+                    final listViewSearchTagsRowList = snapshot.data!;
+
+                    return ListView.separated(
+                      padding: EdgeInsets.fromLTRB(
+                        0,
+                        12.0,
+                        0,
+                        12.0,
                       ),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 8.0,
-                            color: Color(0x1A000000),
-                            offset: Offset(
-                              0.0,
-                              2.0,
-                            ),
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(16.0),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 4.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Icon(
-                                              Icons.nfc_rounded,
-                                              color: Color(0xFFFF6B00),
-                                              size: 18.0,
-                                            ),
-                                            Text(
-                                              'Server Rack Unit B-07',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .titleSmall
-                                                  .override(
-                                                    font:
-                                                        GoogleFonts.interTight(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF1A1A1A),
-                                                    fontSize: 15.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmall
-                                                            .fontStyle,
-                                                  ),
-                                            ),
-                                          ].divide(SizedBox(width: 8.0)),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 3.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Text(
-                                              'Ref:',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelSmall
-                                                      .override(
-                                                        font: GoogleFonts.inter(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontStyle,
-                                                        ),
-                                                        color:
-                                                            Color(0xFF9E9E9E),
-                                                        fontSize: 12.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelSmall
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelSmall
-                                                                .fontStyle,
-                                                      ),
-                                            ),
-                                            Text(
-                                              'REF-2024-00089',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .labelSmall
-                                                  .override(
-                                                    font: GoogleFonts.inter(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelSmall
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF555555),
-                                                    fontSize: 12.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w600,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelSmall
-                                                            .fontStyle,
-                                                  ),
-                                            ),
-                                          ].divide(SizedBox(width: 6.0)),
-                                        ),
-                                      ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Text(
-                                            'Tag ID:',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelSmall
-                                                .override(
-                                                  font: GoogleFonts.inter(
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelSmall
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelSmall
-                                                            .fontStyle,
-                                                  ),
-                                                  color: Color(0xFF9E9E9E),
-                                                  fontSize: 12.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelSmall
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelSmall
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                          Text(
-                                            'E2:00:34:19:11:02:55:3C',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelSmall
-                                                .override(
-                                                  font: GoogleFonts.inter(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelSmall
-                                                            .fontStyle,
-                                                  ),
-                                                  color: Color(0xFF555555),
-                                                  fontSize: 12.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelSmall
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                        ].divide(SizedBox(width: 6.0)),
-                                      ),
-                                    ],
-                                  ),
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      itemCount: listViewSearchTagsRowList.length,
+                      separatorBuilder: (_, __) => SizedBox(height: 10.0),
+                      itemBuilder: (context, listViewIndex) {
+                        final listViewSearchTagsRow =
+                            listViewSearchTagsRowList[listViewIndex];
+                        return Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 8.0,
+                                color: Color(0x1A000000),
+                                offset: Offset(
+                                  0.0,
+                                  2.0,
                                 ),
-                                Container(
-                                  height: 26.0,
-                                  decoration: BoxDecoration(
-                                    color: Color(0x1AFF6B00),
-                                    borderRadius: BorderRadius.circular(13.0),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        10.0, 0.0, 10.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Container(
-                                          width: 6.0,
-                                          height: 6.0,
-                                          decoration: BoxDecoration(
-                                            color: Color(0xFFFF6B00),
-                                            shape: BoxShape.circle,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  5.0, 0.0, 5.0, 0.0),
-                                          child: Text(
-                                            'Unmatched',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelSmall
-                                                .override(
-                                                  font: GoogleFonts.inter(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelSmall
-                                                            .fontStyle,
-                                                  ),
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(16.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 4.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Icon(
+                                                  Icons.nfc_rounded,
                                                   color: Color(0xFFFF6B00),
-                                                  fontSize: 11.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelSmall
-                                                          .fontStyle,
+                                                  size: 18.0,
                                                 ),
+                                                Text(
+                                                  listViewSearchTagsRow
+                                                      .nameDescription!,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .titleSmall
+                                                      .override(
+                                                        font: GoogleFonts
+                                                            .interTight(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .fontStyle,
+                                                        ),
+                                                        color:
+                                                            Color(0xFF1A1A1A),
+                                                        fontSize: 15.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .fontStyle,
+                                                      ),
+                                                ),
+                                              ].divide(SizedBox(width: 8.0)),
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Divider(
-                              height: 16.0,
-                              thickness: 1.0,
-                              color: Color(0xFFF0F0F0),
-                            ),
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Icon(
-                                      Icons.access_time_rounded,
-                                      color: Color(0xFFAAAAAA),
-                                      size: 14.0,
-                                    ),
-                                    Text(
-                                      'Scanned 5h ago',
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelSmall
-                                          .override(
-                                            font: GoogleFonts.inter(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelSmall
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelSmall
-                                                      .fontStyle,
-                                            ),
-                                            color: Color(0xFFAAAAAA),
-                                            fontSize: 11.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelSmall
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelSmall
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                  ].divide(SizedBox(width: 4.0)),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Container(
-                                      width: 36.0,
-                                      height: 36.0,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFF0F8FF),
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                      child: Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: Icon(
-                                          Icons.visibility_rounded,
-                                          color: Colors.blue,
-                                          size: 18.0,
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 36.0,
-                                      height: 36.0,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFFFF3E0),
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                      child: Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: Icon(
-                                          Icons.edit_rounded,
-                                          color: Color(0xFFFF6B00),
-                                          size: 18.0,
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 36.0,
-                                      height: 36.0,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFFFEBEE),
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                      child: Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: Icon(
-                                          Icons.delete_outline_rounded,
-                                          color: Color(0xFFE53935),
-                                          size: 18.0,
-                                        ),
-                                      ),
-                                    ),
-                                  ].divide(SizedBox(width: 4.0)),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 8.0,
-                            color: Color(0x1A000000),
-                            offset: Offset(
-                              0.0,
-                              2.0,
-                            ),
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(16.0),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 4.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Icon(
-                                              Icons.nfc_rounded,
-                                              color: Color(0xFFFF6B00),
-                                              size: 18.0,
-                                            ),
-                                            Text(
-                                              'Equipment Tag C-33',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .titleSmall
-                                                  .override(
-                                                    font:
-                                                        GoogleFonts.interTight(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF1A1A1A),
-                                                    fontSize: 15.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmall
-                                                            .fontStyle,
-                                                  ),
-                                            ),
-                                          ].divide(SizedBox(width: 8.0)),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 3.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Text(
-                                              'Ref:',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 3.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(
+                                                  'S/N:',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
                                                       .labelSmall
                                                       .override(
                                                         font: GoogleFonts.inter(
@@ -1250,14 +538,93 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                                 .labelSmall
                                                                 .fontStyle,
                                                       ),
+                                                ),
+                                                Text(
+                                                  listViewSearchTagsRow
+                                                      .serialNumber!,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelSmall
+                                                      .override(
+                                                        font: GoogleFonts.inter(
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelSmall
+                                                                  .fontStyle,
+                                                        ),
+                                                        color:
+                                                            Color(0xFF555555),
+                                                        fontSize: 12.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelSmall
+                                                                .fontStyle,
+                                                      ),
+                                                ),
+                                              ].divide(SizedBox(width: 6.0)),
                                             ),
-                                            Text(
-                                              'REF-2024-00201',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .labelSmall
-                                                  .override(
-                                                    font: GoogleFonts.inter(
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                'Tag ID:',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .labelSmall
+                                                    .override(
+                                                      font: GoogleFonts.inter(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelSmall
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelSmall
+                                                                .fontStyle,
+                                                      ),
+                                                      color: Color(0xFF9E9E9E),
+                                                      fontSize: 12.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelSmall
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelSmall
+                                                              .fontStyle,
+                                                    ),
+                                              ),
+                                              Text(
+                                                listViewSearchTagsRow.tagId!,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .labelSmall
+                                                    .override(
+                                                      font: GoogleFonts.inter(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelSmall
+                                                                .fontStyle,
+                                                      ),
+                                                      color: Color(0xFF555555),
+                                                      fontSize: 12.0,
+                                                      letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       fontStyle:
@@ -1266,43 +633,95 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                               .labelSmall
                                                               .fontStyle,
                                                     ),
-                                                    color: Color(0xFF555555),
-                                                    fontSize: 12.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w600,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelSmall
-                                                            .fontStyle,
-                                                  ),
+                                              ),
+                                            ].divide(SizedBox(width: 6.0)),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 26.0,
+                                      decoration: BoxDecoration(
+                                        color: Color(0x1A2ECC71),
+                                        borderRadius:
+                                            BorderRadius.circular(13.0),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 0.0, 10.0, 0.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Container(
+                                              width: 6.0,
+                                              height: 6.0,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xFF2ECC71),
+                                                shape: BoxShape.circle,
+                                              ),
                                             ),
-                                          ].divide(SizedBox(width: 6.0)),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(5.0, 0.0, 5.0, 0.0),
+                                              child: Text(
+                                                'Matched',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .labelSmall
+                                                    .override(
+                                                      font: GoogleFonts.inter(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelSmall
+                                                                .fontStyle,
+                                                      ),
+                                                      color: Color(0xFF27AE60),
+                                                      fontSize: 11.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelSmall
+                                                              .fontStyle,
+                                                    ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Text(
-                                            'Tag ID:',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelSmall
-                                                .override(
-                                                  font: GoogleFonts.inter(
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelSmall
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelSmall
-                                                            .fontStyle,
-                                                  ),
-                                                  color: Color(0xFF9E9E9E),
-                                                  fontSize: 12.0,
-                                                  letterSpacing: 0.0,
+                                    ),
+                                  ],
+                                ),
+                                Divider(
+                                  height: 16.0,
+                                  thickness: 1.0,
+                                  color: Color(0xFFF0F0F0),
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Icon(
+                                          Icons.access_time_rounded,
+                                          color: Color(0xFFAAAAAA),
+                                          size: 14.0,
+                                        ),
+                                        Text(
+                                          'Scanned 2h ago',
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelSmall
+                                              .override(
+                                                font: GoogleFonts.inter(
                                                   fontWeight:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -1314,205 +733,169 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                           .labelSmall
                                                           .fontStyle,
                                                 ),
-                                          ),
-                                          Text(
-                                            'E2:00:34:19:11:03:66:4D',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelSmall
-                                                .override(
-                                                  font: GoogleFonts.inter(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelSmall
-                                                            .fontStyle,
-                                                  ),
-                                                  color: Color(0xFF555555),
-                                                  fontSize: 12.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelSmall
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                        ].divide(SizedBox(width: 6.0)),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  height: 26.0,
-                                  decoration: BoxDecoration(
-                                    color: Color(0x1A2ECC71),
-                                    borderRadius: BorderRadius.circular(13.0),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        10.0, 0.0, 10.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
+                                                color: Color(0xFFAAAAAA),
+                                                fontSize: 11.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelSmall
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelSmall
+                                                        .fontStyle,
+                                              ),
+                                        ),
+                                      ].divide(SizedBox(width: 4.0)),
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Container(
-                                          width: 6.0,
-                                          height: 6.0,
+                                          width: 36.0,
+                                          height: 36.0,
                                           decoration: BoxDecoration(
-                                            color: Color(0xFF2ECC71),
-                                            shape: BoxShape.circle,
+                                            color: Color(0xFFF0F8FF),
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  5.0, 0.0, 5.0, 0.0),
-                                          child: Text(
-                                            'Matched',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelSmall
-                                                .override(
-                                                  font: GoogleFonts.inter(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelSmall
-                                                            .fontStyle,
-                                                  ),
-                                                  color: Color(0xFF27AE60),
-                                                  fontSize: 11.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelSmall
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Divider(
-                              height: 16.0,
-                              thickness: 1.0,
-                              color: Color(0xFFF0F0F0),
-                            ),
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Icon(
-                                      Icons.access_time_rounded,
-                                      color: Color(0xFFAAAAAA),
-                                      size: 14.0,
-                                    ),
-                                    Text(
-                                      'Saved yesterday',
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelSmall
-                                          .override(
-                                            font: GoogleFonts.inter(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelSmall
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelSmall
-                                                      .fontStyle,
+                                          child: Align(
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Icon(
+                                              Icons.visibility_rounded,
+                                              color: Colors.blue,
+                                              size: 18.0,
                                             ),
-                                            color: Color(0xFFAAAAAA),
-                                            fontSize: 11.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelSmall
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelSmall
-                                                    .fontStyle,
                                           ),
-                                    ),
-                                  ].divide(SizedBox(width: 4.0)),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Container(
-                                      width: 36.0,
-                                      height: 36.0,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFF0F8FF),
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                      child: Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: Icon(
-                                          Icons.visibility_rounded,
-                                          color: Colors.blue,
-                                          size: 18.0,
                                         ),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 36.0,
-                                      height: 36.0,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFFFF3E0),
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                      child: Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: Icon(
-                                          Icons.edit_rounded,
-                                          color: Color(0xFFFF6B00),
-                                          size: 18.0,
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            context.pushNamed(
+                                              AddNewTagWidget.routeName,
+                                              queryParameters: {
+                                                'isEdit': serializeParam(
+                                                  true,
+                                                  ParamType.bool,
+                                                ),
+                                                'editNameDesc': serializeParam(
+                                                  listViewSearchTagsRow
+                                                      .nameDescription,
+                                                  ParamType.String,
+                                                ),
+                                                'editSerialNumber':
+                                                    serializeParam(
+                                                  listViewSearchTagsRow
+                                                      .serialNumber,
+                                                  ParamType.String,
+                                                ),
+                                                'editTagId': serializeParam(
+                                                  listViewSearchTagsRow.tagId,
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                            );
+                                          },
+                                          child: Container(
+                                            width: 36.0,
+                                            height: 36.0,
+                                            decoration: BoxDecoration(
+                                              color: Color(0xFFFFF3E0),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            ),
+                                            child: Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Icon(
+                                                Icons.edit_rounded,
+                                                color: Color(0xFFFF6B00),
+                                                size: 18.0,
+                                              ),
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 36.0,
-                                      height: 36.0,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFFFEBEE),
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                      child: Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: Icon(
-                                          Icons.delete_outline_rounded,
-                                          color: Color(0xFFE53935),
-                                          size: 18.0,
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            var confirmDialogResponse =
+                                                await showDialog<bool>(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return AlertDialog(
+                                                          title: Text(
+                                                              'Delete Tag'),
+                                                          content: Text(
+                                                              'Are you sure you want to delete this tag?'),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext,
+                                                                      false),
+                                                              child: Text(
+                                                                  'Cancel'),
+                                                            ),
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext,
+                                                                      true),
+                                                              child: Text(
+                                                                  'Confirm'),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    ) ??
+                                                    false;
+                                            if (confirmDialogResponse) {
+                                              await SQLiteManager.instance
+                                                  .deleteTag(
+                                                tagId:
+                                                    listViewSearchTagsRow.tagId,
+                                              );
+                                              safeSetState(() {});
+                                            }
+                                          },
+                                          child: Container(
+                                            width: 36.0,
+                                            height: 36.0,
+                                            decoration: BoxDecoration(
+                                              color: Color(0xFFFFEBEE),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            ),
+                                            child: Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Icon(
+                                                Icons.delete_outline_rounded,
+                                                color: Color(0xFFE53935),
+                                                size: 18.0,
+                                              ),
+                                            ),
+                                          ),
                                         ),
-                                      ),
+                                      ].divide(SizedBox(width: 4.0)),
                                     ),
-                                  ].divide(SizedBox(width: 4.0)),
+                                  ],
                                 ),
                               ],
                             ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ].divide(SizedBox(height: 10.0)),
+                          ),
+                        );
+                      },
+                    );
+                  },
                 ),
               ),
             ],

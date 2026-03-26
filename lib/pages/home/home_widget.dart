@@ -62,7 +62,7 @@ class _HomeWidgetState extends State<HomeWidget> {
         callback: (timer) async {
           safeSetState(() {});
         },
-        startImmediately: true,
+        startImmediately: false,
       );
     });
   }

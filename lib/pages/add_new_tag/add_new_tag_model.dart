@@ -8,6 +8,10 @@ class AddNewTagModel extends FlutterFlowModel<AddNewTagWidget> {
 
   String scannedTagId = ' ';
 
+  bool canSave = false;
+
+  bool saveSuccess = false;
+
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for TextField widget.
