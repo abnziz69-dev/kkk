@@ -41,6 +41,14 @@ class SQLiteManager {
         searchText: searchText,
       );
 
+  Future<List<CheckTagExistsRow>> checkTagExists({
+    String? tagId,
+  }) =>
+      performCheckTagExists(
+        _database,
+        tagId: tagId,
+      );
+
   /// END READ QUERY CALLS
 
   /// START UPDATE QUERY CALLS

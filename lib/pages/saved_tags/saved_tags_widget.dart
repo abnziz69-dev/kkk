@@ -387,7 +387,7 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                 child: FutureBuilder<List<SearchTagsRow>>(
                   future: SQLiteManager.instance.searchTags(
-                    searchText: '',
+                    searchText: _model.searchText,
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.

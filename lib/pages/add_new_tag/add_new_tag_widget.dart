@@ -1083,56 +1083,71 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                   highlightColor: Colors.transparent,
                   onTap: () async {
                     if (_model.canSave == true) {
-                      await SQLiteManager.instance.insertTag(
-                        nameDesc: _model.textController1.text,
-                        serialNumber: _model.textController2.text,
+                      _model.checkResult =
+                          await SQLiteManager.instance.checkTagExists(
                         tagId: _model.textController3.text,
                       );
-                      _model.saveSuccess = true;
-                      safeSetState(() {});
-                      _model.canSave = false;
-                      safeSetState(() {});
-                      safeSetState(() {
-                        _model.textController1?.clear();
-                        _model.textController2?.clear();
-                        _model.textController3?.clear();
-                      });
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Tag saved successfully',
-                            style: TextStyle(
-                              color: FlutterFlowTheme.of(context).primaryText,
+                      if (_model.checkResult != null &&
+                          (_model.checkResult)!.isNotEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'TAG ALREADY SAVED',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
                             ),
+                            duration: Duration(milliseconds: 4000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
                           ),
-                          duration: Duration(milliseconds: 2000),
-                          backgroundColor:
-                              FlutterFlowTheme.of(context).secondary,
-                        ),
-                      );
+                        );
+                      } else {
+                        await SQLiteManager.instance.insertTag(
+                          nameDesc: _model.textController1.text,
+                          serialNumber: _model.textController2.text,
+                          tagId: _model.textController3.text,
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Tage Saved Successfully',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: Duration(milliseconds: 4000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
+                          ),
+                        );
+                        _model.saveSuccess = true;
+                        safeSetState(() {});
+                        _model.canSave = false;
+                        safeSetState(() {});
+                        safeSetState(() {
+                          _model.textController1?.clear();
+                          _model.textController2?.clear();
+                          _model.textController3?.clear();
+                        });
+                      }
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
-                            'Please fill all fields first',
-                            style: GoogleFonts.roboto(
+                            'Please fill all fields',
+                            style: TextStyle(
                               color: FlutterFlowTheme.of(context).primaryText,
-                              shadows: [
-                                Shadow(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  offset: Offset(2.0, 2.0),
-                                  blurRadius: 2.0,
-                                )
-                              ],
                             ),
-                            textAlign: TextAlign.center,
                           ),
-                          duration: Duration(milliseconds: 2000),
-                          backgroundColor: Color(0xFF7F0000),
+                          duration: Duration(milliseconds: 4000),
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondary,
                         ),
                       );
                     }
+
+                    safeSetState(() {});
                   },
                   child: Container(
                     width: double.infinity,

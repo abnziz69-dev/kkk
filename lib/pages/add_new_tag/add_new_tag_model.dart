@@ -1,3 +1,4 @@
+import '/backend/sqlite/sqlite_manager.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'add_new_tag_widget.dart' show AddNewTagWidget;
@@ -26,6 +27,8 @@ class AddNewTagModel extends FlutterFlowModel<AddNewTagWidget> {
   FocusNode? textFieldFocusNode3;
   TextEditingController? textController3;
   String? Function(BuildContext, String?)? textController3Validator;
+  // Stores action output result for [Backend Call - SQLite (CheckTagExists)] action in Container widget.
+  List<CheckTagExistsRow>? checkResult;
 
   @override
   void initState(BuildContext context) {}

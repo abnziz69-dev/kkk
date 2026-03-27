@@ -62,3 +62,25 @@ class SearchTagsRow extends SqliteRow {
 }
 
 /// END SEARCHTAGS
+
+/// BEGIN CHECKTAGEXISTS
+Future<List<CheckTagExistsRow>> performCheckTagExists(
+  Database database, {
+  String? tagId,
+}) {
+  final query = '''
+SELECT tag_id
+FROM saved_tags
+WHERE tag_id = ${tagId}
+LIMIT 1;
+''';
+  return _readQuery(database, query, (d) => CheckTagExistsRow(d));
+}
+
+class CheckTagExistsRow extends SqliteRow {
+  CheckTagExistsRow(Map<String, dynamic> data) : super(data);
+
+  String? get tagId => data['tag_Id'] as String?;
+}
+
+/// END CHECKTAGEXISTS

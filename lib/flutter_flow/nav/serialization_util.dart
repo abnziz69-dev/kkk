@@ -210,6 +210,8 @@ dynamic deserializeParam<T>(
             return GetAllTagsRow(data);
           case SearchTagsRow:
             return SearchTagsRow(data);
+          case CheckTagExistsRow:
+            return CheckTagExistsRow(data);
           default:
             return null;
         }
