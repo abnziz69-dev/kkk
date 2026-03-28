@@ -1108,10 +1108,14 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                           serialNumber: _model.textController2.text,
                           tagId: _model.textController3.text,
                         );
+                        _model.getAllTagsOutput =
+                            await SQLiteManager.instance.getAllTags();
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              _model.textController3.text,
+                              (_model.getAllTagsOutput != null &&
+                                      (_model.getAllTagsOutput)!.isNotEmpty)
+                                  .toString(),
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
