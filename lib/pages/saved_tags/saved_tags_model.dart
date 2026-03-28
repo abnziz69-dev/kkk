@@ -1,6 +1,5 @@
 import '/backend/sqlite/sqlite_manager.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/index.dart';
 import 'saved_tags_widget.dart' show SavedTagsWidget;
 import 'package:flutter/material.dart';
 

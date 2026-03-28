@@ -1,8 +1,6 @@
 import '/backend/sqlite/sqlite_manager.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -85,58 +83,6 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Color(0xFFF5F5F5),
-        appBar: AppBar(
-          backgroundColor: Color(0xFF1A1A1A),
-          automaticallyImplyLeading: false,
-          leading: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-            child: FlutterFlowIconButton(
-              borderRadius: 22.0,
-              buttonSize: 44.0,
-              icon: Icon(
-                Icons.arrow_back_rounded,
-                color: Colors.white,
-                size: 24.0,
-              ),
-              onPressed: () async {
-                context.pushNamed(HomeWidget.routeName);
-              },
-            ),
-          ),
-          title: Text(
-            'Saved Tags',
-            style: FlutterFlowTheme.of(context).titleLarge.override(
-                  font: GoogleFonts.interTight(
-                    fontWeight: FontWeight.bold,
-                    fontStyle:
-                        FlutterFlowTheme.of(context).titleLarge.fontStyle,
-                  ),
-                  color: Colors.white,
-                  letterSpacing: 0.0,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
-                ),
-          ),
-          actions: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-              child: FlutterFlowIconButton(
-                borderRadius: 22.0,
-                buttonSize: 44.0,
-                icon: Icon(
-                  Icons.search_rounded,
-                  color: Colors.white,
-                  size: 24.0,
-                ),
-                onPressed: () {
-                  print('IconButton pressed ...');
-                },
-              ),
-            ),
-          ],
-          centerTitle: true,
-          elevation: 0.0,
-        ),
         body: SafeArea(
           top: true,
           child: Column(
@@ -265,88 +211,87 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                   ),
                 ),
               ),
-              FutureBuilder<List<GetAllTagsRow>>(
-                future: SQLiteManager.instance.getAllTags(),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            FlutterFlowTheme.of(context).primary,
-                          ),
-                        ),
-                      ),
-                    );
-                  }
-                  final listViewGetAllTagsRowList = snapshot.data!;
-
-                  return ListView.builder(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemCount: listViewGetAllTagsRowList.length,
-                    itemBuilder: (context, listViewIndex) {
-                      final listViewGetAllTagsRow =
-                          listViewGetAllTagsRowList[listViewIndex];
-                      return Container(
-                        width: 852.0,
-                        height: 140.0,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 8.0,
-                              color: Color(0x1A000000),
-                              offset: Offset(
-                                0.0,
-                                2.0,
+              Flex(
+                direction: Axis.vertical,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  FutureBuilder<List<GetAllTagsRow>>(
+                    future: SQLiteManager.instance.getAllTags(),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
                               ),
-                            )
-                          ],
-                          borderRadius: BorderRadius.circular(16.0),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.all(16.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Row(
+                            ),
+                          ),
+                        );
+                      }
+                      final listViewGetAllTagsRowList = snapshot.data!;
+
+                      return ListView.builder(
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: listViewGetAllTagsRowList.length,
+                        itemBuilder: (context, listViewIndex) {
+                          final listViewGetAllTagsRow =
+                              listViewGetAllTagsRowList[listViewIndex];
+                          return Container(
+                            width: 852.0,
+                            height: 140.0,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 8.0,
+                                  color: Color(0x1A000000),
+                                  offset: Offset(
+                                    0.0,
+                                    2.0,
+                                  ),
+                                )
+                              ],
+                              borderRadius: BorderRadius.circular(16.0),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Column(
                                 mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Expanded(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 4.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Icon(
-                                                Icons.nfc_rounded,
-                                                color: Color(0xFFFF6B00),
-                                                size: 18.0,
-                                              ),
-                                              Text(
-                                                valueOrDefault<String>(
-                                                  listViewGetAllTagsRow
-                                                      .nameDescription,
-                                                  'Desc',
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 4.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Text(
+                                                    valueOrDefault<String>(
+                                                      listViewGetAllTagsRow
+                                                          .nameDescription,
+                                                      'Desc',
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .titleSmall
                                                         .override(
                                                           font: GoogleFonts
@@ -371,91 +316,94 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                                   .titleSmall
                                                                   .fontStyle,
                                                         ),
+                                                  ),
+                                                ].divide(SizedBox(width: 8.0)),
                                               ),
-                                            ].divide(SizedBox(width: 8.0)),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 3.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Text(
-                                                'S/N:',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .labelSmall
-                                                    .override(
-                                                      font: GoogleFonts.inter(
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelSmall
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelSmall
-                                                                .fontStyle,
-                                                      ),
-                                                      color: Color(0xFF9E9E9E),
-                                                      fontSize: 12.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelSmall
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelSmall
-                                                              .fontStyle,
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 3.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Text(
+                                                    'S/N:',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelSmall
+                                                        .override(
+                                                          font:
+                                                              GoogleFonts.inter(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontStyle,
+                                                          ),
+                                                          color:
+                                                              Color(0xFF9E9E9E),
+                                                          fontSize: 12.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelSmall
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelSmall
+                                                                  .fontStyle,
+                                                        ),
+                                                  ),
+                                                  Text(
+                                                    valueOrDefault<String>(
+                                                      listViewGetAllTagsRow
+                                                          .serialNumber,
+                                                      's/n',
                                                     ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelSmall
+                                                        .override(
+                                                          font:
+                                                              GoogleFonts.inter(
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontStyle,
+                                                          ),
+                                                          color:
+                                                              Color(0xFF555555),
+                                                          fontSize: 12.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelSmall
+                                                                  .fontStyle,
+                                                        ),
+                                                  ),
+                                                ].divide(SizedBox(width: 6.0)),
                                               ),
-                                              Text(
-                                                valueOrDefault<String>(
-                                                  listViewGetAllTagsRow
-                                                      .serialNumber,
-                                                  's/n',
-                                                ),
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .labelSmall
-                                                    .override(
-                                                      font: GoogleFonts.inter(
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelSmall
-                                                                .fontStyle,
-                                                      ),
-                                                      color: Color(0xFF555555),
-                                                      fontSize: 12.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelSmall
-                                                              .fontStyle,
-                                                    ),
-                                              ),
-                                            ].divide(SizedBox(width: 6.0)),
-                                          ),
-                                        ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Text(
-                                              'Tag ID:',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(
+                                                  'Tag ID:',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
                                                       .labelSmall
                                                       .override(
                                                         font: GoogleFonts.inter(
@@ -485,50 +433,54 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                                 .labelSmall
                                                                 .fontStyle,
                                                       ),
-                                            ),
-                                            Text(
-                                              valueOrDefault<String>(
-                                                listViewGetAllTagsRow.tagId,
-                                                'id',
-                                              ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .labelSmall
-                                                  .override(
-                                                    font: GoogleFonts.inter(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelSmall
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF555555),
-                                                    fontSize: 12.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w600,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelSmall
-                                                            .fontStyle,
+                                                ),
+                                                Text(
+                                                  valueOrDefault<String>(
+                                                    listViewGetAllTagsRow.tagId,
+                                                    'id',
                                                   ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelSmall
+                                                      .override(
+                                                        font: GoogleFonts.inter(
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelSmall
+                                                                  .fontStyle,
+                                                        ),
+                                                        color:
+                                                            Color(0xFF555555),
+                                                        fontSize: 12.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelSmall
+                                                                .fontStyle,
+                                                      ),
+                                                ),
+                                              ].divide(SizedBox(width: 6.0)),
                                             ),
-                                          ].divide(SizedBox(width: 6.0)),
+                                          ],
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
-                        ),
+                            ),
+                          );
+                        },
                       );
                     },
-                  );
-                },
+                  ),
+                ],
               ),
             ],
           ),
