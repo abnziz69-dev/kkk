@@ -178,11 +178,7 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                       onChanged: (_) => EasyDebounce.debounce(
                                         '_model.textController',
                                         Duration(milliseconds: 2000),
-                                        () async {
-                                          _model.searchText =
-                                              'SearchTextField text';
-                                          safeSetState(() {});
-                                        },
+                                        () => safeSetState(() {}),
                                       ),
                                       autofocus: false,
                                       obscureText: false,
