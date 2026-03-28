@@ -343,7 +343,7 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                 valueOrDefault<String>(
                                                   listViewGetAllTagsRow
                                                       .nameDescription,
-                                                  'desc',
+                                                  'Desc',
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
