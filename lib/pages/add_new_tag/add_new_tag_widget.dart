@@ -1111,6 +1111,19 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
+                              _model.textController3.text,
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: Duration(milliseconds: 10000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
+                          ),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
                               'Tage Saved Successfully',
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primaryText,
