@@ -342,7 +342,7 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                 valueOrDefault<String>(
                                                   listViewGetAllTagsRow
                                                       .nameDescription,
-                                                  ' Desc',
+                                                  'desc',
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -418,7 +418,7 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                 valueOrDefault<String>(
                                                   listViewGetAllTagsRow
                                                       .serialNumber,
-                                                  ' S/N',
+                                                  's/n',
                                                 ),
                                                 style: FlutterFlowTheme.of(
                                                         context)
@@ -488,7 +488,7 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                             Text(
                                               valueOrDefault<String>(
                                                 listViewGetAllTagsRow.tagId,
-                                                ' TagID',
+                                                'id',
                                               ),
                                               style: FlutterFlowTheme.of(
                                                       context)
