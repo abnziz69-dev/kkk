@@ -52,39 +52,39 @@ class _TrialWidgetState extends State<TrialWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
           top: true,
-          child: ListView(
-            padding: EdgeInsets.zero,
-            shrinkWrap: true,
-            scrollDirection: Axis.vertical,
-            children: [
-              FutureBuilder<List<GetAllTagsRow>>(
-                future: SQLiteManager.instance.getAllTags(),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            FlutterFlowTheme.of(context).primary,
-                          ),
-                        ),
+          child: FutureBuilder<List<GetAllTagsRow>>(
+            future: SQLiteManager.instance.getAllTags(),
+            builder: (context, snapshot) {
+              // Customize what your widget looks like when it's loading.
+              if (!snapshot.hasData) {
+                return Center(
+                  child: SizedBox(
+                    width: 50.0,
+                    height: 50.0,
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        FlutterFlowTheme.of(context).primary,
                       ),
-                    );
-                  }
-                  final columnGetAllTagsRowList = snapshot.data!;
+                    ),
+                  ),
+                );
+              }
+              final listViewGetAllTagsRowList = snapshot.data!;
 
+              return ListView.builder(
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                itemCount: listViewGetAllTagsRowList.length,
+                itemBuilder: (context, listViewIndex) {
+                  final listViewGetAllTagsRow =
+                      listViewGetAllTagsRowList[listViewIndex];
                   return Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: List.generate(columnGetAllTagsRowList.length,
-                        (columnIndex) {
-                      final columnGetAllTagsRow =
-                          columnGetAllTagsRowList[columnIndex];
-                      return Column(
+                    children: [
+                      Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Row(
@@ -92,7 +92,7 @@ class _TrialWidgetState extends State<TrialWidget> {
                             children: [
                               Text(
                                 valueOrDefault<String>(
-                                  columnGetAllTagsRow.nameDescription,
+                                  listViewGetAllTagsRow.nameDescription,
                                   'desc',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -122,7 +122,7 @@ class _TrialWidgetState extends State<TrialWidget> {
                             children: [
                               Text(
                                 valueOrDefault<String>(
-                                  columnGetAllTagsRow.serialNumber,
+                                  listViewGetAllTagsRow.serialNumber,
                                   'sn',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -152,7 +152,7 @@ class _TrialWidgetState extends State<TrialWidget> {
                             children: [
                               Text(
                                 valueOrDefault<String>(
-                                  columnGetAllTagsRow.id,
+                                  listViewGetAllTagsRow.id,
                                   'id',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -178,12 +178,12 @@ class _TrialWidgetState extends State<TrialWidget> {
                             ],
                           ),
                         ],
-                      );
-                    }),
+                      ),
+                    ],
                   );
                 },
-              ),
-            ],
+              );
+            },
           ),
         ),
       ),
