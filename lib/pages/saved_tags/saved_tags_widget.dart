@@ -215,10 +215,19 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                         ),
                                       ),
                                     ),
-                                    Icon(
-                                      Icons.mic_rounded,
-                                      color: Color(0xFF9E9E9E),
-                                      size: 18.0,
+                                    InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        context.safePop();
+                                      },
+                                      child: Icon(
+                                        Icons.chevron_left,
+                                        color: Color(0xFF9E9E9E),
+                                        size: 18.0,
+                                      ),
                                     ),
                                   ],
                                 ),
