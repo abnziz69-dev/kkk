@@ -1131,10 +1131,7 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                           _model.textController2?.clear();
                           _model.textController3?.clear();
                         });
-                        if (Navigator.of(context).canPop()) {
-                          context.pop();
-                        }
-                        context.pushNamed(SavedTagsWidget.routeName);
+                        context.safePop();
                       }
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
