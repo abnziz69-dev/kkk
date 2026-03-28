@@ -385,10 +385,8 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                child: FutureBuilder<List<SearchTagsRow>>(
-                  future: SQLiteManager.instance.searchTags(
-                    searchText: _model.searchText,
-                  ),
+                child: FutureBuilder<List<GetAllTagsRow>>(
+                  future: SQLiteManager.instance.getAllTags(),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
                     if (!snapshot.hasData) {
@@ -404,7 +402,7 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                         ),
                       );
                     }
-                    final listViewSearchTagsRowList = snapshot.data!;
+                    final listViewGetAllTagsRowList = snapshot.data!;
 
                     return ListView.separated(
                       padding: EdgeInsets.fromLTRB(
@@ -415,11 +413,11 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                       ),
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
-                      itemCount: listViewSearchTagsRowList.length,
+                      itemCount: listViewGetAllTagsRowList.length,
                       separatorBuilder: (_, __) => SizedBox(height: 10.0),
                       itemBuilder: (context, listViewIndex) {
-                        final listViewSearchTagsRow =
-                            listViewSearchTagsRowList[listViewIndex];
+                        final listViewGetAllTagsRow =
+                            listViewGetAllTagsRowList[listViewIndex];
                         return Container(
                           width: double.infinity,
                           decoration: BoxDecoration(
@@ -466,7 +464,7 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                   size: 18.0,
                                                 ),
                                                 Text(
-                                                  listViewSearchTagsRow
+                                                  listViewGetAllTagsRow
                                                       .nameDescription!,
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -540,7 +538,7 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  listViewSearchTagsRow
+                                                  listViewGetAllTagsRow
                                                       .serialNumber!,
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -608,7 +606,7 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                     ),
                                               ),
                                               Text(
-                                                listViewSearchTagsRow.tagId!,
+                                                listViewGetAllTagsRow.tagId!,
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .labelSmall
@@ -783,18 +781,18 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                   ParamType.bool,
                                                 ),
                                                 'editNameDesc': serializeParam(
-                                                  listViewSearchTagsRow
+                                                  listViewGetAllTagsRow
                                                       .nameDescription,
                                                   ParamType.String,
                                                 ),
                                                 'editSerialNumber':
                                                     serializeParam(
-                                                  listViewSearchTagsRow
+                                                  listViewGetAllTagsRow
                                                       .serialNumber,
                                                   ParamType.String,
                                                 ),
                                                 'editTagId': serializeParam(
-                                                  listViewSearchTagsRow.tagId,
+                                                  listViewGetAllTagsRow.tagId,
                                                   ParamType.String,
                                                 ),
                                               }.withoutNulls,
@@ -861,7 +859,7 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                               await SQLiteManager.instance
                                                   .deleteTag(
                                                 tagId:
-                                                    listViewSearchTagsRow.tagId,
+                                                    listViewGetAllTagsRow.tagId,
                                               );
                                               safeSetState(() {});
                                             }
