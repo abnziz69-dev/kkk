@@ -293,8 +293,8 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                       final listViewGetAllTagsRow =
                           listViewGetAllTagsRowList[listViewIndex];
                       return Container(
-                        width: double.infinity,
-                        height: 121.91,
+                        width: 852.0,
+                        height: 140.0,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           boxShadow: [
@@ -313,6 +313,7 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                           padding: EdgeInsets.all(16.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -521,54 +522,6 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                   ),
                                 ],
                               ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Container(
-                                        width: 36.0,
-                                        height: 36.0,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFFFF3E0),
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                        ),
-                                        child: Align(
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Icon(
-                                            Icons.edit_rounded,
-                                            color: Color(0xFFFF6B00),
-                                            size: 18.0,
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 36.0,
-                                        height: 36.0,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFFFEBEE),
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                        ),
-                                        child: Align(
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Icon(
-                                            Icons.delete_outline_rounded,
-                                            color: Color(0xFFE53935),
-                                            size: 18.0,
-                                          ),
-                                        ),
-                                      ),
-                                    ].divide(SizedBox(width: 4.0)),
-                                  ),
-                                ],
-                              ),
                             ],
                           ),
                         ),
@@ -576,22 +529,6 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                     },
                   );
                 },
-              ),
-              Text(
-                'No Tags Available',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      font: GoogleFonts.inter(
-                        fontWeight:
-                            FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                        fontStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                      ),
-                      letterSpacing: 0.0,
-                      fontWeight:
-                          FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                      fontStyle:
-                          FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                    ),
               ),
             ],
           ),
