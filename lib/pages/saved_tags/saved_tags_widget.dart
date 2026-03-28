@@ -418,8 +418,11 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                     ),
                                               ),
                                               Text(
-                                                listViewGetAllTagsRow
-                                                    .serialNumber!,
+                                                valueOrDefault<String>(
+                                                  listViewGetAllTagsRow
+                                                      .serialNumber,
+                                                  'S/N',
+                                                ),
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .labelSmall
