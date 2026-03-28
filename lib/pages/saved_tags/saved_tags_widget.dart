@@ -339,8 +339,11 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                 size: 18.0,
                                               ),
                                               Text(
-                                                listViewGetAllTagsRow
-                                                    .nameDescription!,
+                                                valueOrDefault<String>(
+                                                  listViewGetAllTagsRow
+                                                      .nameDescription,
+                                                  ' Desc',
+                                                ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .titleSmall
@@ -412,8 +415,11 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                     ),
                                               ),
                                               Text(
-                                                listViewGetAllTagsRow
-                                                    .serialNumber!,
+                                                valueOrDefault<String>(
+                                                  listViewGetAllTagsRow
+                                                      .serialNumber,
+                                                  ' S/N',
+                                                ),
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .labelSmall
@@ -480,7 +486,10 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                       ),
                                             ),
                                             Text(
-                                              listViewGetAllTagsRow.tagId!,
+                                              valueOrDefault<String>(
+                                                listViewGetAllTagsRow.tagId,
+                                                ' TagID',
+                                              ),
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .labelSmall
