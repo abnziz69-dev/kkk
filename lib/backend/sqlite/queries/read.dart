@@ -14,10 +14,12 @@ Future<List<GetAllTagsRow>> performGetAllTags(
 ) {
   final query = '''
 SELECT
+  id,
   name_description,
   serial_number,
   tag_id
-FROM saved_tags;
+FROM saved_tags
+ORDER BY id DESC;
 ''';
   return _readQuery(database, query, (d) => GetAllTagsRow(d));
 }
@@ -28,6 +30,7 @@ class GetAllTagsRow extends SqliteRow {
   String? get nameDescription => data['name_description'] as String?;
   String? get serialNumber => data['serial_number'] as String?;
   String? get tagId => data['tag_id'] as String?;
+  String? get id => data['id'] as String?;
 }
 
 /// END GETALLTAGS

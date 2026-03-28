@@ -773,30 +773,57 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            context.pushNamed(
-                                              AddNewTagWidget.routeName,
-                                              queryParameters: {
-                                                'isEdit': serializeParam(
-                                                  true,
-                                                  ParamType.bool,
+                                            if (listViewGetAllTagsRow.tagId !=
+                                                    null &&
+                                                listViewGetAllTagsRow.tagId !=
+                                                    '') {
+                                              context.pushNamed(
+                                                AddNewTagWidget.routeName,
+                                                queryParameters: {
+                                                  'isEdit': serializeParam(
+                                                    true,
+                                                    ParamType.bool,
+                                                  ),
+                                                  'editNameDesc':
+                                                      serializeParam(
+                                                    listViewGetAllTagsRow
+                                                        .nameDescription,
+                                                    ParamType.String,
+                                                  ),
+                                                  'editSerialNumber':
+                                                      serializeParam(
+                                                    listViewGetAllTagsRow
+                                                        .serialNumber,
+                                                    ParamType.String,
+                                                  ),
+                                                  'editTagId': serializeParam(
+                                                    listViewGetAllTagsRow.tagId,
+                                                    ParamType.String,
+                                                  ),
+                                                }.withoutNulls,
+                                              );
+                                            } else {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'No data available',
+                                                    style: TextStyle(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
+                                                  ),
+                                                  duration: Duration(
+                                                      milliseconds: 6000),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondary,
                                                 ),
-                                                'editNameDesc': serializeParam(
-                                                  listViewGetAllTagsRow
-                                                      .nameDescription,
-                                                  ParamType.String,
-                                                ),
-                                                'editSerialNumber':
-                                                    serializeParam(
-                                                  listViewGetAllTagsRow
-                                                      .serialNumber,
-                                                  ParamType.String,
-                                                ),
-                                                'editTagId': serializeParam(
-                                                  listViewGetAllTagsRow.tagId,
-                                                  ParamType.String,
-                                                ),
-                                              }.withoutNulls,
-                                            );
+                                              );
+                                            }
                                           },
                                           child: Container(
                                             width: 36.0,
