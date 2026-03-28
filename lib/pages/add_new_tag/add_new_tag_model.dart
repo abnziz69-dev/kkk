@@ -29,8 +29,6 @@ class AddNewTagModel extends FlutterFlowModel<AddNewTagWidget> {
   String? Function(BuildContext, String?)? textController3Validator;
   // Stores action output result for [Backend Call - SQLite (CheckTagExists)] action in Container widget.
   List<CheckTagExistsRow>? checkResult;
-  // Stores action output result for [Backend Call - SQLite (GetAllTags)] action in Container widget.
-  List<GetAllTagsRow>? getAllTagsOutput;
 
   @override
   void initState(BuildContext context) {}

@@ -1108,23 +1108,6 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                           serialNumber: _model.textController2.text,
                           tagId: _model.textController3.text,
                         );
-                        _model.getAllTagsOutput =
-                            await SQLiteManager.instance.getAllTags();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              (_model.getAllTagsOutput != null &&
-                                      (_model.getAllTagsOutput)!.isNotEmpty)
-                                  .toString(),
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primaryText,
-                              ),
-                            ),
-                            duration: Duration(milliseconds: 10000),
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).secondary,
-                          ),
-                        );
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
@@ -1147,6 +1130,8 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                           _model.textController2?.clear();
                           _model.textController3?.clear();
                         });
+
+                        context.pushNamed(SavedTagsWidget.routeName);
                       }
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(

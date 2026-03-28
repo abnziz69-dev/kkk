@@ -930,7 +930,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            context.pushNamed(SavedTagsWidget.routeName);
+                            context.goNamed(SavedTagsWidget.routeName);
                           },
                           child: Container(
                             width: 100.0,
