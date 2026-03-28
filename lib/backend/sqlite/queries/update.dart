@@ -13,9 +13,7 @@ INSERT INTO saved_tags (
   serial_number,
   tag_id
 ) VALUES (
-  '${nameDesc}',
-  '${serialNumber}',
-  '${tagId}'
+  ?, ?, ?
 );
 ''';
   return database.rawQuery(query);
