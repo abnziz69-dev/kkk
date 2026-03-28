@@ -60,6 +60,20 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.getAllTagsResult = await SQLiteManager.instance.getAllTags();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            (_model.getAllTagsResult != null &&
+                    (_model.getAllTagsResult)!.isNotEmpty)
+                .toString(),
+            style: TextStyle(
+              color: FlutterFlowTheme.of(context).primaryText,
+            ),
+          ),
+          duration: Duration(milliseconds: 5000),
+          backgroundColor: FlutterFlowTheme.of(context).secondary,
+        ),
+      );
     });
 
     _model.textController ??= TextEditingController();
@@ -397,11 +411,9 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                       ),
                                                       Text(
                                                         valueOrDefault<String>(
-                                                          _model
-                                                              .getAllTagsResult
-                                                              ?.firstOrNull
-                                                              ?.serialNumber,
-                                                          'S/N',
+                                                          listViewGetAllTagsRow
+                                                              .serialNumber,
+                                                          'SS',
                                                         ),
                                                         style: FlutterFlowTheme
                                                                 .of(context)
