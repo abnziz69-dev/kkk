@@ -416,6 +416,7 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                             listViewGetAllTagsRowList[listViewIndex];
                         return Container(
                           width: double.infinity,
+                          height: 137.09,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             boxShadow: [
@@ -763,146 +764,39 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                             ),
                                           ),
                                         ),
-                                        InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            if (listViewGetAllTagsRow.tagId !=
-                                                    null &&
-                                                listViewGetAllTagsRow.tagId !=
-                                                    '') {
-                                              context.pushNamed(
-                                                AddNewTagWidget.routeName,
-                                                queryParameters: {
-                                                  'isEdit': serializeParam(
-                                                    true,
-                                                    ParamType.bool,
-                                                  ),
-                                                  'editNameDesc':
-                                                      serializeParam(
-                                                    listViewGetAllTagsRow
-                                                        .nameDescription,
-                                                    ParamType.String,
-                                                  ),
-                                                  'editSerialNumber':
-                                                      serializeParam(
-                                                    listViewGetAllTagsRow
-                                                        .serialNumber,
-                                                    ParamType.String,
-                                                  ),
-                                                  'editTagId': serializeParam(
-                                                    listViewGetAllTagsRow.tagId,
-                                                    ParamType.String,
-                                                  ),
-                                                }.withoutNulls,
-                                              );
-                                            } else {
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                  content: Text(
-                                                    'No data available',
-                                                    style: TextStyle(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                    ),
-                                                  ),
-                                                  duration: Duration(
-                                                      milliseconds: 6000),
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondary,
-                                                ),
-                                              );
-                                            }
-                                          },
-                                          child: Container(
-                                            width: 36.0,
-                                            height: 36.0,
-                                            decoration: BoxDecoration(
-                                              color: Color(0xFFFFF3E0),
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                            ),
-                                            child: Align(
-                                              alignment: AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: Icon(
-                                                Icons.edit_rounded,
-                                                color: Color(0xFFFF6B00),
-                                                size: 18.0,
-                                              ),
+                                        Container(
+                                          width: 36.0,
+                                          height: 36.0,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFFFFF3E0),
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          child: Align(
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Icon(
+                                              Icons.edit_rounded,
+                                              color: Color(0xFFFF6B00),
+                                              size: 18.0,
                                             ),
                                           ),
                                         ),
-                                        InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            var confirmDialogResponse =
-                                                await showDialog<bool>(
-                                                      context: context,
-                                                      builder:
-                                                          (alertDialogContext) {
-                                                        return AlertDialog(
-                                                          title: Text(
-                                                              'Delete Tag'),
-                                                          content: Text(
-                                                              'Are you sure you want to delete this tag?'),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext,
-                                                                      false),
-                                                              child: Text(
-                                                                  'Cancel'),
-                                                            ),
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext,
-                                                                      true),
-                                                              child: Text(
-                                                                  'Confirm'),
-                                                            ),
-                                                          ],
-                                                        );
-                                                      },
-                                                    ) ??
-                                                    false;
-                                            if (confirmDialogResponse) {
-                                              await SQLiteManager.instance
-                                                  .deleteTag(
-                                                tagId:
-                                                    listViewGetAllTagsRow.tagId,
-                                              );
-                                              safeSetState(() {});
-                                            }
-                                          },
-                                          child: Container(
-                                            width: 36.0,
-                                            height: 36.0,
-                                            decoration: BoxDecoration(
-                                              color: Color(0xFFFFEBEE),
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                            ),
-                                            child: Align(
-                                              alignment: AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: Icon(
-                                                Icons.delete_outline_rounded,
-                                                color: Color(0xFFE53935),
-                                                size: 18.0,
-                                              ),
+                                        Container(
+                                          width: 36.0,
+                                          height: 36.0,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFFFFEBEE),
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          child: Align(
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Icon(
+                                              Icons.delete_outline_rounded,
+                                              color: Color(0xFFE53935),
+                                              size: 18.0,
                                             ),
                                           ),
                                         ),
