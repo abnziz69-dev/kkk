@@ -1044,6 +1044,29 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                             '####',
                           ),
                         );
+                        if (Navigator.of(context).canPop()) {
+                          context.pop();
+                        }
+                        context.pushNamed(SavedTagsWidget.routeName);
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'tagg already saved ',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: Duration(milliseconds: 5000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
+                          ),
+                        );
+                        safeSetState(() {
+                          _model.descTextFieldTextController?.clear();
+                          _model.serialTextFieldTextController?.clear();
+                          _model.tagIdTextFieldTextController?.clear();
+                        });
                       }
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
