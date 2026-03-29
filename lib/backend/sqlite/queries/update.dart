@@ -41,8 +41,8 @@ Future performDeleteTag(
   String? tagId,
 }) {
   final query = '''
-DELETE FROM saved_tags
-WHERE tag_id = '${tagId}';
+DELETE FROM saved_tags;
+
 ''';
   return database.rawQuery(query);
 }
