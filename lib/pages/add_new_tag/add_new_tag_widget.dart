@@ -1036,9 +1036,18 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                         );
                       } else {
                         await SQLiteManager.instance.insertTag(
-                          nameDesc: widget.editNameDesc,
-                          serialNumber: widget.editSerialNumber,
-                          tagId: widget.editTagId,
+                          nameDesc: valueOrDefault<String>(
+                            _model.descTextFieldTextController.text,
+                            'Desc',
+                          ),
+                          serialNumber: valueOrDefault<String>(
+                            _model.serialTextFieldTextController.text,
+                            'Serial',
+                          ),
+                          tagId: valueOrDefault<String>(
+                            _model.tagIdTextFieldTextController.text,
+                            'ID',
+                          ),
                         );
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(

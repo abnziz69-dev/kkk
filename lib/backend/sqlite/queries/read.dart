@@ -65,8 +65,7 @@ Future<List<CheckTagExistsRow>> performCheckTagExists(
   String? tagId,
 }) {
   final query = '''
-SELECT tag_id
-FROM saved_tags
+SELECT * FROM saved_tags
 WHERE tag_id = '${tagId}';
 LIMIT 1;
 ''';
