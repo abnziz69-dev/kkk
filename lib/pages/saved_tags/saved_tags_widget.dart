@@ -95,6 +95,55 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
               Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFF1A1A1A),
+                      borderRadius: BorderRadius.circular(24.0),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          'Saved Tags',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    color: Color(0xFFFAFBFB),
+                                    fontSize: 25.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                        ),
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.safePop();
+                          },
+                          child: Icon(
+                            Icons.chevron_left,
+                            color: Color(0xFF9E9E9E),
+                            size: 50.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(16.0, 30.0, 16.0, 16.0),
@@ -227,7 +276,7 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                       child: Icon(
                                         Icons.chevron_left,
                                         color: Color(0xFF9E9E9E),
-                                        size: 18.0,
+                                        size: 30.0,
                                       ),
                                     ),
                                   ],
