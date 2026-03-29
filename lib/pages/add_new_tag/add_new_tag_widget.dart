@@ -1034,6 +1034,27 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                                 FlutterFlowTheme.of(context).secondary,
                           ),
                         );
+                        var confirmDialogResponse = await showDialog<bool>(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: Text('exist'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, false),
+                                      child: Text('Cancel'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, true),
+                                      child: Text('Confirm'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ) ??
+                            false;
                       } else {
                         await SQLiteManager.instance.insertTag(
                           nameDesc: valueOrDefault<String>(
