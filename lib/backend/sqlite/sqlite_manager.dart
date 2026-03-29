@@ -23,7 +23,7 @@ class SQLiteManager {
     }
     _database = await initializeDatabaseFromDbFile(
       'savedtags',
-      'saved_tags.db',
+      'Test.db',
     );
   }
 

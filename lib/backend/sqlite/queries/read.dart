@@ -13,11 +13,7 @@ Future<List<GetAllTagsRow>> performGetAllTags(
   Database database,
 ) {
   final query = '''
-SELECT
-  name_description,
-  serial_number,
-  tag_id
-FROM saved_tags;
+SELECT * FROM saved_tags;
 ''';
   return _readQuery(database, query, (d) => GetAllTagsRow(d));
 }

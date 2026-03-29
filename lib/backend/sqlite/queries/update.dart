@@ -8,13 +8,8 @@ Future performInsertTag(
   String? tagId,
 }) {
   final query = '''
-INSERT INTO saved_tags (
-  name_description,
-  serial_number,
-  tag_id
-) VALUES (
-  ?, ?, ?
-);
+INSERT INTO saved_tags (name_description,serial_number,tag_id)
+ VALUES ('${nameDesc}','${serialNumber}','${tagId}');
 ''';
   return database.rawQuery(query);
 }
