@@ -301,45 +301,62 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                       ),
                     ),
                   ),
-                  FutureBuilder<List<GetAllTagsRow>>(
-                    future: SQLiteManager.instance.getAllTags(),
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
+                  Container(
+                    width: 261.72,
+                    height: 251.2,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                    ),
+                    child: FutureBuilder<List<GetAllTagsRow>>(
+                      future: SQLiteManager.instance.getAllTags(),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50.0,
+                              height: 50.0,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  FlutterFlowTheme.of(context).primary,
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      }
-                      final listViewGetAllTagsRowList = snapshot.data!;
+                          );
+                        }
+                        final listViewGetAllTagsRowList = snapshot.data!;
 
-                      return ListView.builder(
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: listViewGetAllTagsRowList.length,
-                        itemBuilder: (context, listViewIndex) {
-                          final listViewGetAllTagsRow =
-                              listViewGetAllTagsRowList[listViewIndex];
-                          return Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(
-                                valueOrDefault<String>(
-                                  listViewGetAllTagsRow.nameDescription,
-                                  'test',
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      font: GoogleFonts.inter(
+                        return ListView.builder(
+                          padding: EdgeInsets.zero,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          itemCount: listViewGetAllTagsRowList.length,
+                          itemBuilder: (context, listViewIndex) {
+                            final listViewGetAllTagsRow =
+                                listViewGetAllTagsRowList[listViewIndex];
+                            return Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  valueOrDefault<String>(
+                                    listViewGetAllTagsRow.nameDescription,
+                                    'test',
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.inter(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                        color: Color(0xFF010101),
+                                        letterSpacing: 0.0,
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .fontWeight,
@@ -347,20 +364,13 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                             .bodyMedium
                                             .fontStyle,
                                       ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),
