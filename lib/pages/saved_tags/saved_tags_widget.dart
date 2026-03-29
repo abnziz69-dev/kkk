@@ -60,6 +60,26 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.getAllTagsResult = await SQLiteManager.instance.getAllTags();
+      var confirmDialogResponse = await showDialog<bool>(
+            context: context,
+            builder: (alertDialogContext) {
+              return AlertDialog(
+                title: Text(_model.getAllTagsResult!.firstOrNull!
+                    .nameDescription!.firstOrNull!),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(alertDialogContext, false),
+                    child: Text('Cancel'),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.pop(alertDialogContext, true),
+                    child: Text('Confirm'),
+                  ),
+                ],
+              );
+            },
+          ) ??
+          false;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
