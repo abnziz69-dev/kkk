@@ -311,7 +311,10 @@ class _TagIDWidgetState extends State<TagIDWidget> {
                       highlightColor: Colors.transparent,
                       onTap: () async {
                         await SQLiteManager.instance.deleteTag(
-                          tagId: '',
+                          tagId: valueOrDefault<String>(
+                            widget.tagId,
+                            'Tag_ID',
+                          ),
                         );
                         await widget.rebuild?.call();
                       },
