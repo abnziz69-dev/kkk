@@ -309,7 +309,11 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                         MainAxisSize.max,
                                                     children: [
                                                       Text(
-                                                        'hhh',
+                                                        valueOrDefault<String>(
+                                                          listViewGetAllTagsRow
+                                                              .nameDescription,
+                                                          'test',
+                                                        ),
                                                         style: FlutterFlowTheme
                                                                 .of(context)
                                                             .titleSmall
