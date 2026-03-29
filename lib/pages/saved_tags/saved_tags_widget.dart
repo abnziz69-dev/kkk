@@ -85,7 +85,7 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
               builder: (alertDialogContext) {
                 return AlertDialog(
                   title: Text(valueOrDefault<String>(
-                    _model.kk123?.firstOrNull?.nameDescription,
+                    _model.kk123?.lastOrNull?.nameDescription,
                     'test',
                   )),
                   actions: [
