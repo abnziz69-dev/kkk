@@ -25,4 +25,10 @@ class FFAppState extends ChangeNotifier {
   set rfidStatus(String value) {
     _rfidStatus = value;
   }
+
+  String _scannedTagId = '';
+  String get scannedTagId => _scannedTagId;
+  set scannedTagId(String value) {
+    _scannedTagId = value;
+  }
 }
