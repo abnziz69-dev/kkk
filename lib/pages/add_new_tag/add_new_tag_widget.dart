@@ -1058,7 +1058,7 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              'saved',
+                              'saved succesfully',
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
