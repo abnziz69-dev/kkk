@@ -138,7 +138,7 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 16.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 30.0, 16.0, 16.0),
                     child: Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
