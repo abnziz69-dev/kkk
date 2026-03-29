@@ -1015,11 +1015,16 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                   highlightColor: Colors.transparent,
                   onTap: () async {
                     if (_model.canSave == true) {
-                      if (false) {
+                      _model.checkTagExistsResult =
+                          await SQLiteManager.instance.checkTagExists(
+                        tagId: widget.editTagId,
+                      );
+                      if (_model.checkTagExistsResult != null &&
+                          (_model.checkTagExistsResult)!.isNotEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              'TAG ALREADY SAVED',
+                              'Tag already exists',
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
@@ -1031,23 +1036,14 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                         );
                       } else {
                         await SQLiteManager.instance.insertTag(
-                          nameDesc: valueOrDefault<String>(
-                            _model.descTextFieldTextController.text,
-                            '####',
-                          ),
-                          serialNumber: valueOrDefault<String>(
-                            _model.serialTextFieldTextController.text,
-                            '####',
-                          ),
-                          tagId: valueOrDefault<String>(
-                            _model.tagIdTextFieldTextController.text,
-                            '####',
-                          ),
+                          nameDesc: widget.editNameDesc,
+                          serialNumber: widget.editSerialNumber,
+                          tagId: widget.editTagId,
                         );
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              'tagg already saved ',
+                              'saved',
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
@@ -1078,6 +1074,8 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                         ),
                       );
                     }
+
+                    safeSetState(() {});
                   },
                   child: Container(
                     width: double.infinity,

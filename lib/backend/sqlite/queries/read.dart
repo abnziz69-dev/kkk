@@ -67,7 +67,7 @@ Future<List<CheckTagExistsRow>> performCheckTagExists(
   final query = '''
 SELECT tag_id
 FROM saved_tags
-WHERE tag_id = ?
+WHERE tag_id = '${tagId}';
 LIMIT 1;
 ''';
   return _readQuery(database, query, (d) => CheckTagExistsRow(d));
