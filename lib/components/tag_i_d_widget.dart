@@ -313,27 +313,6 @@ class _TagIDWidgetState extends State<TagIDWidget> {
                         await SQLiteManager.instance.deleteTag(
                           tagId: widget.tagId,
                         );
-                        var confirmDialogResponse = await showDialog<bool>(
-                              context: context,
-                              builder: (alertDialogContext) {
-                                return AlertDialog(
-                                  title: Text('Done'),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () => Navigator.pop(
-                                          alertDialogContext, false),
-                                      child: Text('Cancel'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () => Navigator.pop(
-                                          alertDialogContext, true),
-                                      child: Text('Confirm'),
-                                    ),
-                                  ],
-                                );
-                              },
-                            ) ??
-                            false;
                         await widget.rebuild?.call();
                       },
                       child: Container(
