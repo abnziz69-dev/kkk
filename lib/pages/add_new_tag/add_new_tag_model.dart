@@ -1,4 +1,3 @@
-import '/backend/sqlite/sqlite_manager.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'add_new_tag_widget.dart' show AddNewTagWidget;
@@ -15,33 +14,33 @@ class AddNewTagModel extends FlutterFlowModel<AddNewTagWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode3;
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
-  // Stores action output result for [Backend Call - SQLite (CheckTagExists)] action in Container widget.
-  List<CheckTagExistsRow>? checkResult;
+  // State field(s) for DescTextField widget.
+  FocusNode? descTextFieldFocusNode;
+  TextEditingController? descTextFieldTextController;
+  String? Function(BuildContext, String?)? descTextFieldTextControllerValidator;
+  // State field(s) for SerialTextField widget.
+  FocusNode? serialTextFieldFocusNode;
+  TextEditingController? serialTextFieldTextController;
+  String? Function(BuildContext, String?)?
+      serialTextFieldTextControllerValidator;
+  // State field(s) for TagIdTextField widget.
+  FocusNode? tagIdTextFieldFocusNode;
+  TextEditingController? tagIdTextFieldTextController;
+  String? Function(BuildContext, String?)?
+      tagIdTextFieldTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {
-    textFieldFocusNode1?.dispose();
-    textController1?.dispose();
+    descTextFieldFocusNode?.dispose();
+    descTextFieldTextController?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    textController2?.dispose();
+    serialTextFieldFocusNode?.dispose();
+    serialTextFieldTextController?.dispose();
 
-    textFieldFocusNode3?.dispose();
-    textController3?.dispose();
+    tagIdTextFieldFocusNode?.dispose();
+    tagIdTextFieldTextController?.dispose();
   }
 }

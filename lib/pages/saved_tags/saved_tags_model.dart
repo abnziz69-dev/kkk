@@ -1,3 +1,4 @@
+import '/backend/sqlite/sqlite_manager.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'saved_tags_widget.dart' show SavedTagsWidget;
 import 'package:flutter/material.dart';
@@ -9,6 +10,8 @@ class SavedTagsModel extends FlutterFlowModel<SavedTagsWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Backend Call - SQLite (GetAllTags)] action in SavedTags widget.
+  List<GetAllTagsRow>? test;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;

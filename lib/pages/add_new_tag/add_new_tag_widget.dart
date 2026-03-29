@@ -76,14 +76,15 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
     super.initState();
     _model = createModel(context, () => AddNewTagModel());
 
-    _model.textController1 ??= TextEditingController();
-    _model.textFieldFocusNode1 ??= FocusNode();
+    _model.descTextFieldTextController ??= TextEditingController();
+    _model.descTextFieldFocusNode ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.serialTextFieldTextController ??= TextEditingController();
+    _model.serialTextFieldFocusNode ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController(text: _model.scannedTagId);
-    _model.textFieldFocusNode3 ??= FocusNode();
+    _model.tagIdTextFieldTextController ??=
+        TextEditingController(text: _model.scannedTagId);
+    _model.tagIdTextFieldFocusNode ??= FocusNode();
   }
 
   @override
@@ -308,17 +309,22 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                                 ].divide(SizedBox(width: 4.0)),
                               ),
                               TextFormField(
-                                controller: _model.textController1,
-                                focusNode: _model.textFieldFocusNode1,
+                                controller: _model.descTextFieldTextController,
+                                focusNode: _model.descTextFieldFocusNode,
                                 onChanged: (_) => EasyDebounce.debounce(
-                                  '_model.textController1',
+                                  '_model.descTextFieldTextController',
                                   Duration(milliseconds: 2000),
                                   () async {
-                                    _model.canSave =
-                                        (_model.textController1.text != '') &&
-                                            (_model.textController2.text !=
-                                                '') &&
-                                            (_model.textController3.text != '');
+                                    _model.canSave = (_model
+                                                .descTextFieldTextController
+                                                .text !=
+                                            '') &&
+                                        (_model.serialTextFieldTextController
+                                                .text !=
+                                            '') &&
+                                        (_model.tagIdTextFieldTextController
+                                                .text !=
+                                            '');
                                     _model.saveSuccess = false;
                                     safeSetState(() {});
                                   },
@@ -413,7 +419,8 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                                           .bodyMedium
                                           .fontStyle,
                                     ),
-                                validator: _model.textController1Validator
+                                validator: _model
+                                    .descTextFieldTextControllerValidator
                                     .asValidator(context),
                                 inputFormatters: [
                                   if (!isAndroid && !isiOS)
@@ -483,17 +490,23 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                                 ].divide(SizedBox(width: 4.0)),
                               ),
                               TextFormField(
-                                controller: _model.textController2,
-                                focusNode: _model.textFieldFocusNode2,
+                                controller:
+                                    _model.serialTextFieldTextController,
+                                focusNode: _model.serialTextFieldFocusNode,
                                 onChanged: (_) => EasyDebounce.debounce(
-                                  '_model.textController2',
+                                  '_model.serialTextFieldTextController',
                                   Duration(milliseconds: 2000),
                                   () async {
-                                    _model.canSave =
-                                        (_model.textController1.text != '') &&
-                                            (_model.textController2.text !=
-                                                '') &&
-                                            (_model.textController3.text != '');
+                                    _model.canSave = (_model
+                                                .descTextFieldTextController
+                                                .text !=
+                                            '') &&
+                                        (_model.serialTextFieldTextController
+                                                .text !=
+                                            '') &&
+                                        (_model.tagIdTextFieldTextController
+                                                .text !=
+                                            '');
                                     _model.saveSuccess = false;
                                     safeSetState(() {});
                                   },
@@ -588,7 +601,8 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                                           .bodyMedium
                                           .fontStyle,
                                     ),
-                                validator: _model.textController2Validator
+                                validator: _model
+                                    .serialTextFieldTextControllerValidator
                                     .asValidator(context),
                                 inputFormatters: [
                                   if (!isAndroid && !isiOS)
@@ -719,18 +733,23 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                                 alignment: AlignmentDirectional(1.0, 0.0),
                                 children: [
                                   TextFormField(
-                                    controller: _model.textController3,
-                                    focusNode: _model.textFieldFocusNode3,
+                                    controller:
+                                        _model.tagIdTextFieldTextController,
+                                    focusNode: _model.tagIdTextFieldFocusNode,
                                     onChanged: (_) => EasyDebounce.debounce(
-                                      '_model.textController3',
+                                      '_model.tagIdTextFieldTextController',
                                       Duration(milliseconds: 2000),
                                       () async {
                                         _model.canSave = (_model
-                                                    .textController1.text !=
+                                                    .descTextFieldTextController
+                                                    .text !=
                                                 '') &&
-                                            (_model.textController2.text ==
+                                            (_model.serialTextFieldTextController
+                                                    .text ==
                                                 '') &&
-                                            (_model.textController3.text != '');
+                                            (_model.tagIdTextFieldTextController
+                                                    .text !=
+                                                '');
                                         _model.saveSuccess = false;
                                         safeSetState(() {});
                                       },
@@ -837,7 +856,8 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                                                   .bodyMedium
                                                   .fontStyle,
                                         ),
-                                    validator: _model.textController3Validator
+                                    validator: _model
+                                        .tagIdTextFieldTextControllerValidator
                                         .asValidator(context),
                                     inputFormatters: [
                                       if (!isAndroid && !isiOS)
@@ -1083,12 +1103,7 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                   highlightColor: Colors.transparent,
                   onTap: () async {
                     if (_model.canSave == true) {
-                      _model.checkResult =
-                          await SQLiteManager.instance.checkTagExists(
-                        tagId: _model.textController3.text,
-                      );
-                      if (_model.checkResult != null &&
-                          (_model.checkResult)!.isNotEmpty) {
+                      if (false) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
@@ -1104,34 +1119,19 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                         );
                       } else {
                         await SQLiteManager.instance.insertTag(
-                          nameDesc: _model.textController1.text,
-                          serialNumber: _model.textController2.text,
-                          tagId: _model.textController3.text,
-                        );
-                        await SQLiteManager.instance.getAllTags();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Tage Saved Successfully',
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primaryText,
-                              ),
-                            ),
-                            duration: Duration(milliseconds: 4000),
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).secondary,
+                          nameDesc: valueOrDefault<String>(
+                            _model.descTextFieldTextController.text,
+                            '####',
+                          ),
+                          serialNumber: valueOrDefault<String>(
+                            _model.serialTextFieldTextController.text,
+                            '####',
+                          ),
+                          tagId: valueOrDefault<String>(
+                            _model.tagIdTextFieldTextController.text,
+                            '####',
                           ),
                         );
-                        _model.saveSuccess = true;
-                        safeSetState(() {});
-                        _model.canSave = false;
-                        safeSetState(() {});
-                        safeSetState(() {
-                          _model.textController1?.clear();
-                          _model.textController2?.clear();
-                          _model.textController3?.clear();
-                        });
-                        context.safePop();
                       }
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -1148,8 +1148,6 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                         ),
                       );
                     }
-
-                    safeSetState(() {});
                   },
                   child: Container(
                     width: double.infinity,
