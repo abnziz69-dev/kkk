@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -76,6 +77,11 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => AddNewTagModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      safeSetState(() {});
+    });
 
     _model.descTextFieldTextController ??= TextEditingController();
     _model.descTextFieldFocusNode ??= FocusNode();
@@ -1034,49 +1040,7 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                                 FlutterFlowTheme.of(context).secondary,
                           ),
                         );
-                        var confirmDialogResponse = await showDialog<bool>(
-                              context: context,
-                              builder: (alertDialogContext) {
-                                return AlertDialog(
-                                  title: Text('exist'),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () => Navigator.pop(
-                                          alertDialogContext, false),
-                                      child: Text('Cancel'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () => Navigator.pop(
-                                          alertDialogContext, true),
-                                      child: Text('Confirm'),
-                                    ),
-                                  ],
-                                );
-                              },
-                            ) ??
-                            false;
                       } else {
-                        var confirmDialogResponse = await showDialog<bool>(
-                              context: context,
-                              builder: (alertDialogContext) {
-                                return AlertDialog(
-                                  title: Text('f'),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () => Navigator.pop(
-                                          alertDialogContext, false),
-                                      child: Text('Cancel'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () => Navigator.pop(
-                                          alertDialogContext, true),
-                                      child: Text('Confirm'),
-                                    ),
-                                  ],
-                                );
-                              },
-                            ) ??
-                            false;
                         await SQLiteManager.instance.insertTag(
                           nameDesc: valueOrDefault<String>(
                             _model.descTextFieldTextController.text,
