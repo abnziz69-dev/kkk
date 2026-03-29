@@ -1017,7 +1017,7 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                     if (_model.canSave == true) {
                       _model.checkTagExistsResult =
                           await SQLiteManager.instance.checkTagExists(
-                        tagId: widget.editTagId,
+                        tagId: _model.tagIdTextFieldTextController.text,
                       );
                       if (_model.checkTagExistsResult != null &&
                           (_model.checkTagExistsResult)!.isNotEmpty) {
