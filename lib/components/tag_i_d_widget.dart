@@ -272,38 +272,6 @@ class _TagIDWidgetState extends State<TagIDWidget> {
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Container(
-                      width: 36.0,
-                      height: 36.0,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFF0F8FF),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
-                        child: Icon(
-                          Icons.visibility_rounded,
-                          color: Colors.blue,
-                          size: 18.0,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: 36.0,
-                      height: 36.0,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFFFF3E0),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
-                        child: Icon(
-                          Icons.edit_rounded,
-                          color: Color(0xFFFF6B00),
-                          size: 18.0,
-                        ),
-                      ),
-                    ),
                     InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,

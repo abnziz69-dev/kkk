@@ -26,8 +26,8 @@ Future performUpdateTag(
   final query = '''
 UPDATE saved_tags
 SET
-  name_description = '${nameDesc}',
-  serial_number = '${serialNumber}'
+name_description = '${nameDesc}',
+serial_number = '${serialNumber}'
 WHERE tag_id = '${tagId}';
 ''';
   return database.rawQuery(query);
