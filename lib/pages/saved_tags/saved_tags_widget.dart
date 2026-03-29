@@ -331,7 +331,9 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                       Text(
                                                         valueOrDefault<String>(
                                                           listViewGetAllTagsRow
-                                                              .nameDescription,
+                                                              .nameDescription
+                                                              ?.elementAtOrNull(
+                                                                  listViewIndex),
                                                           'Desc',
                                                         ),
                                                         style: FlutterFlowTheme
@@ -410,11 +412,7 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                             ),
                                                       ),
                                                       Text(
-                                                        valueOrDefault<String>(
-                                                          listViewGetAllTagsRow
-                                                              .serialNumber,
-                                                          'SS',
-                                                        ),
+                                                        'hh',
                                                         style: FlutterFlowTheme
                                                                 .of(context)
                                                             .labelSmall
@@ -487,11 +485,7 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                               ),
                                                     ),
                                                     Text(
-                                                      valueOrDefault<String>(
-                                                        listViewGetAllTagsRow
-                                                            .tagId,
-                                                        'id',
-                                                      ),
+                                                      'hh',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .labelSmall

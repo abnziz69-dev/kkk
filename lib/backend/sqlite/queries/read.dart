@@ -25,9 +25,10 @@ FROM saved_tags;
 class GetAllTagsRow extends SqliteRow {
   GetAllTagsRow(Map<String, dynamic> data) : super(data);
 
-  String? get nameDescription => data['name_description'] as String?;
-  String? get serialNumber => data['serial_number'] as String?;
-  String? get tagId => data['tag_id'] as String?;
+  List<String>? get nameDescription =>
+      data['name_description'] as List<String>?;
+  List<String>? get serialNumber => data['serial_number'] as List<String>?;
+  List<String>? get tagId => data['tag_id'] as List<String>?;
 }
 
 /// END GETALLTAGS
