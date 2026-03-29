@@ -1044,11 +1044,6 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
                             '####',
                           ),
                         );
-                        if (Navigator.of(context).canPop()) {
-                          context.pop();
-                        }
-                        context.pushNamed(SavedTagsWidget.routeName);
-
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(

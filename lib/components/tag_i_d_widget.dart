@@ -12,11 +12,13 @@ class TagIDWidget extends StatefulWidget {
     this.name,
     this.serial,
     this.tagId,
+    required this.rebuild,
   });
 
   final String? name;
   final String? serial;
   final String? tagId;
+  final Future Function()? rebuild;
 
   @override
   State<TagIDWidget> createState() => _TagIDWidgetState();
@@ -311,6 +313,28 @@ class _TagIDWidgetState extends State<TagIDWidget> {
                         await SQLiteManager.instance.deleteTag(
                           tagId: widget.tagId,
                         );
+                        var confirmDialogResponse = await showDialog<bool>(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: Text('Done'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, false),
+                                      child: Text('Cancel'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, true),
+                                      child: Text('Confirm'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ) ??
+                            false;
+                        await widget.rebuild?.call();
                       },
                       child: Container(
                         width: 36.0,

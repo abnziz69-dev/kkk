@@ -8,6 +8,14 @@ class SavedTagsModel extends FlutterFlowModel<SavedTagsWidget> {
 
   String searchText = ' ';
 
+  List<String> tags = [];
+  void addToTags(String item) => tags.add(item);
+  void removeFromTags(String item) => tags.remove(item);
+  void removeAtIndexFromTags(int index) => tags.removeAt(index);
+  void insertAtIndexInTags(int index, String item) => tags.insert(index, item);
+  void updateTagsAtIndex(int index, Function(String) updateFn) =>
+      tags[index] = updateFn(tags[index]);
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Backend Call - SQLite (GetAllTags)] action in SavedTags widget.

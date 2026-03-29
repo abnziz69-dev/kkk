@@ -81,28 +81,6 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
               },
             ) ??
             false;
-        confirmDialogResponse = await showDialog<bool>(
-              context: context,
-              builder: (alertDialogContext) {
-                return AlertDialog(
-                  title: Text(valueOrDefault<String>(
-                    _model.kk123?.lastOrNull?.nameDescription,
-                    'test',
-                  )),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(alertDialogContext, false),
-                      child: Text('Cancel'),
-                    ),
-                    TextButton(
-                      onPressed: () => Navigator.pop(alertDialogContext, true),
-                      child: Text('Confirm'),
-                    ),
-                  ],
-                );
-              },
-            ) ??
-            false;
       } else {
         var confirmDialogResponse = await showDialog<bool>(
               context: context,
@@ -352,6 +330,9 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                   listViewGetAllTagsRow.tagId,
                                   'Tag_ID',
                                 ),
+                                rebuild: () async {
+                                  safeSetState(() {});
+                                },
                               );
                             },
                           );
