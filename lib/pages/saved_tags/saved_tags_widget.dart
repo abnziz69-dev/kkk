@@ -305,7 +305,7 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                     width: 261.72,
                     height: 251.2,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      color: Color(0xFFBEBEBE),
                     ),
                     child: FutureBuilder<List<GetAllTagsRow>>(
                       future: SQLiteManager.instance.getAllTags(),
