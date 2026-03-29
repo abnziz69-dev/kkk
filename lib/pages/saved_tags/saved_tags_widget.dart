@@ -80,20 +80,6 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
             },
           ) ??
           false;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            (_model.getAllTagsResult != null &&
-                    (_model.getAllTagsResult)!.isNotEmpty)
-                .toString(),
-            style: TextStyle(
-              color: FlutterFlowTheme.of(context).primaryText,
-            ),
-          ),
-          duration: Duration(milliseconds: 5000),
-          backgroundColor: FlutterFlowTheme.of(context).secondary,
-        ),
-      );
     });
 
     _model.textController ??= TextEditingController();
@@ -349,13 +335,7 @@ class _SavedTagsWidgetState extends State<SavedTagsWidget> {
                                                         MainAxisSize.max,
                                                     children: [
                                                       Text(
-                                                        valueOrDefault<String>(
-                                                          listViewGetAllTagsRow
-                                                              .nameDescription
-                                                              ?.elementAtOrNull(
-                                                                  listViewIndex),
-                                                          'Desc',
-                                                        ),
+                                                        'hhh',
                                                         style: FlutterFlowTheme
                                                                 .of(context)
                                                             .titleSmall
