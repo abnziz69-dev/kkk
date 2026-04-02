@@ -152,6 +152,8 @@ enum ParamType {
   JSON,
 
   SqliteRow,
+  CustomClass,
+  CustomEnum,
 }
 
 dynamic deserializeParam<T>(
