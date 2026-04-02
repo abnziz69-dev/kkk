@@ -1,7 +1,9 @@
 import '/backend/sqlite/sqlite_manager.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +11,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import '/services/rfid_service.dart';
 import 'add_new_tag_model.dart';
 export 'add_new_tag_model.dart';
 
@@ -73,81 +74,32 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
   late AddNewTagModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _pageActive = false;
 
-@override
-void initState() {
-  super.initState();
-  _model = createModel(context, () => AddNewTagModel());
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => AddNewTagModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       safeSetState(() {});
     });
 
-  _model.descTextFieldTextController ??= TextEditingController();
-  _model.descTextFieldFocusNode ??= FocusNode();
+    _model.descTextFieldTextController ??= TextEditingController();
+    _model.descTextFieldFocusNode ??= FocusNode();
 
-  _model.serialTextFieldTextController ??= TextEditingController();
-  _model.serialTextFieldFocusNode ??= FocusNode();
+    _model.serialTextFieldTextController ??= TextEditingController();
+    _model.serialTextFieldFocusNode ??= FocusNode();
 
-  _model.tagIdTextFieldTextController ??=
-      TextEditingController(text: FFAppState().scannedTagId);
-  _model.tagIdTextFieldFocusNode ??= FocusNode();
-
-  _pageActive = true;
-  FFAppState().scannedTagId = '';
-  _model.tagIdTextFieldTextController.text = '';
-
-
-  
-  RFIDService.setTagReadListener((tagId) {
-    if (!_pageActive) return;
-    print('TAG FROM ANDROID: $tagId');
-    FFAppState().scannedTagId = tagId;
-    _model.tagIdTextFieldTextController.text = tagId;
-
-    if (mounted) {
-      setState(() {});
-    }
-  });
-
-  connectRFIDOnly();
-}
-Future<void> connectRFIDOnly() async {
-  try {
-    FFAppState().rfidStatus = 'connecting';
-    if (mounted) setState(() {});
-
-    print("CONNECT RFID...");
-    final connected = await RFIDService.connectRFID();
-    print("CONNECTED: $connected");
-
-    if (connected) {
-      FFAppState().rfidStatus = 'connected';
-    } else {
-      FFAppState().rfidStatus = 'disconnected';
-    }
-
-    if (mounted) {
-      setState(() {});
-    }
-  } catch (e) {
-    print("RFID ERROR: $e");
-    FFAppState().rfidStatus = 'disconnected';
-
-    if (mounted) {
-      setState(() {});
-    }
+    _model.tagIdTextFieldTextController ??=
+        TextEditingController(text: FFAppState().scannedTagId);
+    _model.tagIdTextFieldFocusNode ??= FocusNode();
   }
-}
+
   @override
   void dispose() {
-    _pageActive = false;
-    RFIDService.stopScan();
-  ///RFIDService.disableRFID();
-    RFIDService.disconnectRFID();
     _model.dispose();
+
     super.dispose();
   }
 
@@ -492,6 +444,108 @@ Future<void> connectRFIDOnly() async {
                                       );
                                     }),
                                 ],
+                              ),
+                            ].divide(SizedBox(height: 6.0)),
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    'Part Number',
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          font: GoogleFonts.inter(
+                                            fontWeight: FontWeight.w600,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .fontStyle,
+                                          ),
+                                          color: Color(0xFF444444),
+                                          fontSize: 13.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontStyle,
+                                        ),
+                                  ),
+                                  Text(
+                                    '*',
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          font: GoogleFonts.inter(
+                                            fontWeight: FontWeight.bold,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .fontStyle,
+                                          ),
+                                          color: Color(0xFFFF6B00),
+                                          fontSize: 13.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.bold,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontStyle,
+                                        ),
+                                  ),
+                                ].divide(SizedBox(width: 4.0)),
+                              ),
+                              FlutterFlowDropDown<String>(
+                                controller: _model.dropDownValueController ??=
+                                    FormFieldController<String>(null),
+                                options: ['Option 1', 'Option 2', 'Option 3'],
+                                onChanged: (val) => safeSetState(
+                                    () => _model.dropDownValue = val),
+                                width: 323.0,
+                                height: 40.0,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      font: GoogleFonts.inter(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                      letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                hintText: 'Select...',
+                                icon: Icon(
+                                  Icons.keyboard_arrow_down_rounded,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 24.0,
+                                ),
+                                fillColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                elevation: 2.0,
+                                borderColor: Colors.transparent,
+                                borderWidth: 0.0,
+                                borderRadius: 8.0,
+                                margin: EdgeInsetsDirectional.fromSTEB(
+                                    12.0, 0.0, 12.0, 0.0),
+                                hidesUnderline: true,
+                                isOverButton: false,
+                                isSearchable: false,
+                                isMultiSelect: false,
                               ),
                             ].divide(SizedBox(height: 6.0)),
                           ),
