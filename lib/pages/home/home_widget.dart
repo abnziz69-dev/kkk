@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'home_model.dart';
 export 'home_model.dart';
 
+
 /// Create a professional mobile home screen for an RFID management app using
 /// black and orange branding.
 ///
@@ -50,9 +51,11 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   @override
   void initState() {
-    super.initState();
-    _model = createModel(context, () => HomeModel());
-  }
+  super.initState();
+  _model = createModel(context, () => HomeModel());
+}
+ 
+
 
   @override
   void dispose() {

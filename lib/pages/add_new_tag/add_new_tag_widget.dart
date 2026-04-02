@@ -9,6 +9,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import '/services/rfid_service.dart';
 import 'add_new_tag_model.dart';
 export 'add_new_tag_model.dart';
 
@@ -72,32 +73,81 @@ class _AddNewTagWidgetState extends State<AddNewTagWidget> {
   late AddNewTagModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  bool _pageActive = false;
 
-  @override
-  void initState() {
-    super.initState();
-    _model = createModel(context, () => AddNewTagModel());
+@override
+void initState() {
+  super.initState();
+  _model = createModel(context, () => AddNewTagModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       safeSetState(() {});
     });
 
-    _model.descTextFieldTextController ??= TextEditingController();
-    _model.descTextFieldFocusNode ??= FocusNode();
+  _model.descTextFieldTextController ??= TextEditingController();
+  _model.descTextFieldFocusNode ??= FocusNode();
 
-    _model.serialTextFieldTextController ??= TextEditingController();
-    _model.serialTextFieldFocusNode ??= FocusNode();
+  _model.serialTextFieldTextController ??= TextEditingController();
+  _model.serialTextFieldFocusNode ??= FocusNode();
 
-    _model.tagIdTextFieldTextController ??=
-        TextEditingController(text: FFAppState().scannedTagId);
-    _model.tagIdTextFieldFocusNode ??= FocusNode();
+  _model.tagIdTextFieldTextController ??=
+      TextEditingController(text: FFAppState().scannedTagId);
+  _model.tagIdTextFieldFocusNode ??= FocusNode();
+
+  _pageActive = true;
+  FFAppState().scannedTagId = '';
+  _model.tagIdTextFieldTextController.text = '';
+
+
+  
+  RFIDService.setTagReadListener((tagId) {
+    if (!_pageActive) return;
+    print('TAG FROM ANDROID: $tagId');
+    FFAppState().scannedTagId = tagId;
+    _model.tagIdTextFieldTextController.text = tagId;
+
+    if (mounted) {
+      setState(() {});
+    }
+  });
+
+  connectRFIDOnly();
+}
+Future<void> connectRFIDOnly() async {
+  try {
+    FFAppState().rfidStatus = 'connecting';
+    if (mounted) setState(() {});
+
+    print("CONNECT RFID...");
+    final connected = await RFIDService.connectRFID();
+    print("CONNECTED: $connected");
+
+    if (connected) {
+      FFAppState().rfidStatus = 'connected';
+    } else {
+      FFAppState().rfidStatus = 'disconnected';
+    }
+
+    if (mounted) {
+      setState(() {});
+    }
+  } catch (e) {
+    print("RFID ERROR: $e");
+    FFAppState().rfidStatus = 'disconnected';
+
+    if (mounted) {
+      setState(() {});
+    }
   }
-
+}
   @override
   void dispose() {
+    _pageActive = false;
+    RFIDService.stopScan();
+  ///RFIDService.disableRFID();
+    RFIDService.disconnectRFID();
     _model.dispose();
-
     super.dispose();
   }
 
