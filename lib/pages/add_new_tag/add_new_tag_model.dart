@@ -19,10 +19,6 @@ class AddNewTagModel extends FlutterFlowModel<AddNewTagWidget> {
   FocusNode? descTextFieldFocusNode;
   TextEditingController? descTextFieldTextController;
   String? Function(BuildContext, String?)? descTextFieldTextControllerValidator;
-  // State field(s) for PartNo widget.
-  FocusNode? partNoFocusNode;
-  TextEditingController? partNoTextController;
-  String? Function(BuildContext, String?)? partNoTextControllerValidator;
   // State field(s) for SerialTextField widget.
   FocusNode? serialTextFieldFocusNode;
   TextEditingController? serialTextFieldTextController;
@@ -43,9 +39,6 @@ class AddNewTagModel extends FlutterFlowModel<AddNewTagWidget> {
   void dispose() {
     descTextFieldFocusNode?.dispose();
     descTextFieldTextController?.dispose();
-
-    partNoFocusNode?.dispose();
-    partNoTextController?.dispose();
 
     serialTextFieldFocusNode?.dispose();
     serialTextFieldTextController?.dispose();
