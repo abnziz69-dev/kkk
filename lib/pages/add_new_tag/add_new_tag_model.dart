@@ -1,6 +1,5 @@
 import '/backend/sqlite/sqlite_manager.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/form_field_controller.dart';
 import '/index.dart';
 import 'add_new_tag_widget.dart' show AddNewTagWidget;
 import 'package:flutter/material.dart';
@@ -20,9 +19,10 @@ class AddNewTagModel extends FlutterFlowModel<AddNewTagWidget> {
   FocusNode? descTextFieldFocusNode;
   TextEditingController? descTextFieldTextController;
   String? Function(BuildContext, String?)? descTextFieldTextControllerValidator;
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
+  // State field(s) for PartNo widget.
+  FocusNode? partNoFocusNode;
+  TextEditingController? partNoTextController;
+  String? Function(BuildContext, String?)? partNoTextControllerValidator;
   // State field(s) for SerialTextField widget.
   FocusNode? serialTextFieldFocusNode;
   TextEditingController? serialTextFieldTextController;
@@ -43,6 +43,9 @@ class AddNewTagModel extends FlutterFlowModel<AddNewTagWidget> {
   void dispose() {
     descTextFieldFocusNode?.dispose();
     descTextFieldTextController?.dispose();
+
+    partNoFocusNode?.dispose();
+    partNoTextController?.dispose();
 
     serialTextFieldFocusNode?.dispose();
     serialTextFieldTextController?.dispose();
